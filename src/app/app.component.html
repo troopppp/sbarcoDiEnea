@@ -1,166 +1,74 @@
-<main class="page">
-  <header class="hero">
-    <div class="hero__badge">Nuova stagione • terrazza vista mare</div>
-    <h1>{{ hero.name }}</h1>
-    <p class="hero__tagline">{{ hero.tagline }}</p>
-    <p class="hero__address">📍 {{ hero.address }}</p>
-    <div class="hero__actions">
-      <a class="btn btn-primary" [href]="hero.ctaBooking" target="_blank" rel="noreferrer">Prenota un tavolo</a>
-      <a class="btn btn-secondary" [href]="hero.ctaCall">Chiama ora</a>
+<div class="page">
+  <header class="topbar">
+    <div class="container topbar__inner">
+      <a routerLink="/" class="logo" (click)="closeMobileMenu()">
+        <div class="logo__line1">
+          <span class="logo__allo">
+            <span>A</span><span>l</span><span>l</span><span>o</span>
+          </span>
+          <span class="logo__sbarco">Sbarco</span>
+        </div>
+        <div class="logo__line2">
+          <span class="logo__di-enea">DI ENEA</span>
+          <span class="logo__ristorante"> - </span>
+          <span class="logo__ristorante">Ristorante</span>
+        </div>
+      </a>
+
+      <nav class="nav" [class.open]="mobileMenuOpen">
+        <a
+          *ngFor="let link of navLinks"
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+          (click)="closeMobileMenu()"
+          >{{ link.label }}</a
+        >
+      </nav>
+
+      <div class="topbar__actions">
+        <a class="pill" href="tel:3338024769">
+          <span class="material-symbols-outlined phone-icon">call</span>
+          <span class="phone-text">Chiama ora</span>
+        </a>
+        <a class="btn primary" routerLink="/prenota">Prenota</a>
+      </div>
+
+      <button class="hamburger" (click)="toggleMobileMenu()" [class.active]="mobileMenuOpen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
-  <section class="panel-grid">
-    <article class="panel">
-      <header>
-        <h2>⏰ Orari</h2>
-        <p>Servizio continuo sul mare di Anzio</p>
-      </header>
-      <ul class="list">
-        <li *ngFor="let item of hours">
-          <span>{{ item.day }}</span>
-          <strong>{{ item.time }}</strong>
-        </li>
-      </ul>
-    </article>
+  <div class="mobile-overlay" *ngIf="mobileMenuOpen" (click)="closeMobileMenu()"></div>
 
-    <article class="panel">
-      <header>
-        <h2>💶 Prezzi indicativi</h2>
-        <p>Percorsi degustazione e piatti alla carta</p>
-      </header>
-      <ul class="list">
-        <li *ngFor="let item of pricing">
-          <span>{{ item.label }}</span>
-          <strong>{{ item.value }}</strong>
-        </li>
-      </ul>
-    </article>
+  <main class="main" [@routeAnimations]="getRouteAnimationData()">
+    <router-outlet></router-outlet>
+  </main>
 
-    <article class="panel">
-      <header>
-        <h2>📞 Contatti</h2>
-        <p>Rispondiamo rapidamente a chiamate e mail</p>
-      </header>
-      <div class="contact-grid">
-        <a class="contact-card" [href]="'tel:' + contacts.phone.replace(/[^+\d]/g, '')">
-          <div class="icon">📲</div>
-          <div>
-            <p>Telefono</p>
-            <strong>{{ contacts.phone }}</strong>
-          </div>
-        </a>
-        <a class="contact-card" [href]="'mailto:' + contacts.email">
-          <div class="icon">✉️</div>
-          <div>
-            <p>Email</p>
-            <strong>{{ contacts.email }}</strong>
-          </div>
-        </a>
-        <a class="contact-card" [href]="contacts.website" target="_blank" rel="noreferrer">
-          <div class="icon">🖥️</div>
-          <div>
-            <p>Sito</p>
-            <strong>sbarcodienea.it</strong>
-          </div>
-        </a>
-        <a class="contact-card" [href]="contacts.maps" target="_blank" rel="noreferrer">
-          <div class="icon">🗺️</div>
-          <div>
-            <p>Come arrivare</p>
-            <strong>Google Maps</strong>
-          </div>
-        </a>
-      </div>
-    </article>
-  </section>
-
-  <section class="panel">
-    <header class="section-heading">
-      <div>
-        <p class="eyebrow">Servizi & Accessibilità</p>
-        <h2>Comfort curato e accesso inclusivo</h2>
-      </div>
-      <div class="filter-chips">
-        <button
-          *ngFor="let category of categories"
-          (click)="selectCategory(category)"
-          [class.active]="filteredServices().some(service => service.category === category) || category === 'Tutti' && filteredServices().length === services.length"
-        >
-          {{ category }}
-        </button>
-      </div>
-    </header>
-    <div class="service-grid">
-      <article class="service-card" *ngFor="let service of filteredServices()">
-        <div class="service-icon">{{ service.icon }}</div>
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
         <div>
-          <h3>{{ service.title }}</h3>
-          <p>{{ service.description }}</p>
-          <span class="chip">{{ service.category }}</span>
+          <p class="value">Allo Sbarco di Enea</p>
+          <p class="muted">Viale dei Romagnoli, 675 - 00126 Roma</p>
         </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="panel proposal-panel">
-    <header class="section-heading">
-      <div>
-        <p class="eyebrow">Proposte e punti di forza</p>
-        <h2>Il meglio della cucina di mare contemporanea</h2>
       </div>
-      <a class="btn btn-ghost" [href]="hero.ctaBooking" target="_blank" rel="noreferrer">Prenota ora</a>
-    </header>
-    <div class="proposal-grid">
-      <article class="proposal" *ngFor="let proposal of proposals">
-        <div class="proposal-icon">{{ proposal.icon }}</div>
-        <div>
-          <h3>{{ proposal.title }}</h3>
-          <p>{{ proposal.text }}</p>
-        </div>
-      </article>
+      <div class="footer__links">
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/cookie-policy">Cookie Policy</a>
+      </div>
+      <div class="footer__contacts">
+        <a href="tel:3338024769">333 802 4769</a>
+        <a href="mailto:allosbarcodienea@hotmail.it">allosbarcodienea&#64;hotmail.it</a>
+        <a href="https://www.facebook.com/allosbarcodienea" target="_blank" rel="noopener" class="footer__social">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
     </div>
-  </section>
-
-  <section class="panel info-grid">
-    <article>
-      <p class="eyebrow">Ambiente & frequentazione</p>
-      <h2>Atmosfera</h2>
-      <ul class="list alt">
-        <li *ngFor="let item of ambiance">
-          <strong>{{ item.title }}</strong>
-          <p>{{ item.text }}</p>
-        </li>
-      </ul>
-    </article>
-
-    <article>
-      <p class="eyebrow">Pagamenti & parcheggio</p>
-      <h2>Logistica</h2>
-      <ul class="list alt">
-        <li *ngFor="let item of paymentAndParking">
-          <strong>{{ item.icon }} {{ item.title }}</strong>
-          <p>{{ item.text }}</p>
-        </li>
-      </ul>
-    </article>
-  </section>
-</main>
-
-<footer class="footer">
-  <div>
-    <h3>{{ hero.name }}</h3>
-    <p>{{ hero.address }}</p>
-    <p><a [href]="'tel:' + contacts.phone.replace(/[^+\d]/g, '')">{{ contacts.phone }}</a></p>
-    <p><a [href]="contacts.email ? 'mailto:' + contacts.email : ''">{{ contacts.email }}</a></p>
-  </div>
-  <div>
-    <h4>Raggiungici</h4>
-    <a class="map-link" [href]="contacts.maps" target="_blank" rel="noreferrer">Apri in Google Maps ↗</a>
-    <p class="badges">🚾 Accessibile · 🌿 Dehor fronte mare · 🅿️ Parcheggio convenzionato</p>
-  </div>
-  <div class="footer-cta">
-    <a class="btn btn-primary" [href]="hero.ctaBooking" target="_blank" rel="noreferrer">Prenota un tavolo</a>
-    <a class="btn btn-secondary" [href]="'tel:' + contacts.phone.replace(/[^+\d]/g, '')">Chiama ora</a>
-  </div>
-</footer>
+  </footer>
+</div>

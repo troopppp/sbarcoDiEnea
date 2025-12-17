@@ -1,0 +1,75 @@
+<section class="hero hero--soft">
+  <div class="container">
+    <div class="hero__text" style="text-align: center; max-width: 680px; margin: 0 auto;">
+      <p class="eyebrow">Prenota un tavolo</p>
+      <h1>Prenota online in pochi click</h1>
+      <p class="lead">
+        Scegli data, orario e numero di persone per prenotare il tuo tavolo.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="max-width: 600px;">
+    <div class="booking__form card" style="overflow: visible;">
+      <form id="booking-form">
+        <div class="form-grid">
+          <label>
+            <span>Numero di persone</span>
+            <div class="custom-number-input">
+              <button type="button" class="number-btn minus">−</button>
+              <input type="number" id="people" name="people" min="1" max="20" value="2" required readonly />
+              <button type="button" class="number-btn plus">+</button>
+            </div>
+          </label>
+          <label>
+            <span>Data</span>
+            <input type="text" id="date" name="date" placeholder="Seleziona una data" required readonly />
+          </label>
+          <label class="wide">
+            <span>Orario preferito</span>
+            <div class="custom-select" id="time-select">
+              <div class="custom-select__trigger">
+                <span class="custom-select__value">Seleziona un orario</span>
+                <span class="custom-select__arrow">▼</span>
+              </div>
+              <div class="custom-select__options">
+                <div class="time-section">
+                  <div class="time-section__header">Pranzo</div>
+                  <div class="custom-select__option" data-value="12:00">12:00</div>
+                  <div class="custom-select__option" data-value="12:30">12:30</div>
+                  <div class="custom-select__option" data-value="13:00">13:00</div>
+                  <div class="custom-select__option" data-value="13:30">13:30</div>
+                  <div class="custom-select__option" data-value="14:00">14:00</div>
+                  <div class="custom-select__option" data-value="14:30">14:30</div>
+                </div>
+                <div class="time-section">
+                  <div class="time-section__header">Cena</div>
+                  <div class="custom-select__option" data-value="19:00">19:00</div>
+                  <div class="custom-select__option" data-value="19:30">19:30</div>
+                  <div class="custom-select__option" data-value="20:00">20:00</div>
+                  <div class="custom-select__option" data-value="20:30">20:30</div>
+                  <div class="custom-select__option" data-value="21:00">21:00</div>
+                  <div class="custom-select__option" data-value="21:30">21:30</div>
+                  <div class="custom-select__option" data-value="22:00">22:00</div>
+                  <div class="custom-select__option" data-value="22:30">22:30</div>
+                </div>
+              </div>
+            </div>
+            <input type="hidden" id="time" name="time" required />
+          </label>
+        </div>
+        <button type="submit" class="btn primary full">Continua con la prenotazione</button>
+      </form>
+    </div>
+
+    <div class="booking-alternative" style="margin-top: 32px; text-align: center;">
+      <p class="muted" style="margin-bottom: 16px;">Preferisci prenotare per telefono?</p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a class="btn primary" href="tel:3338024769">Chiama 333 802 4769</a>
+        <a class="btn ghost" href="mailto:allosbarcodienea@hotmail.it">Scrivi una mail</a>
+      </div>
+    </div>
+  </div>
+</section>

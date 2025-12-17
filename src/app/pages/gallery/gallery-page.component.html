@@ -1,0 +1,20 @@
+<section class="hero hero--soft">
+  <div class="container hero__layout">
+    <div class="hero__text">
+      <p class="eyebrow">Photo Gallery</p>
+      <h1>Scorci di sala e di cucina</h1>
+      <p class="lead">Uno sguardo a piatti e ambienti del ristorante.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="gallery-grid">
+      <figure class="gallery-item" *ngFor="let item of gallery">
+        <img [src]="item.url" [alt]="item.alt" loading="lazy" />
+        <figcaption>{{ item.alt }}</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>

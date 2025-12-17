@@ -1,0 +1,407 @@
+@import 'flatpickr/dist/flatpickr.css';
+
+label {
+  position: relative;
+}
+
+:host ::ng-deep .flatpickr-calendar {
+  position: absolute !important;
+  background: #ffffff !important;
+  border: 2px solid var(--line) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+  font-family: 'Manrope', sans-serif !important;
+  padding: 0 !important;
+  width: 320px !important;
+  z-index: 9999 !important;
+  top: calc(100% + 8px) !important;
+  left: 0 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(-10px) !important;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0.2s !important;
+}
+
+:host ::ng-deep .flatpickr-calendar.open {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(0) !important;
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
+  z-index: 9999 !important;
+}
+
+:host ::ng-deep .flatpickr-months {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  background: rgba(216, 105, 61, 0.05) !important;
+  border-radius: 12px 12px 0 0 !important;
+  padding: 12px !important;
+  position: relative !important;
+}
+
+:host ::ng-deep .flatpickr-months .flatpickr-month {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  height: auto !important;
+  line-height: 1 !important;
+  flex: 1 !important;
+}
+
+:host ::ng-deep .flatpickr-current-month {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+  font-size: 16px !important;
+  padding: 0 !important;
+  height: 32px !important;
+}
+
+:host ::ng-deep .flatpickr-monthDropdown-months {
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  color: var(--text) !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: default !important;
+  padding: 0 4px !important;
+  appearance: none !important;
+  pointer-events: none !important;
+}
+
+:host ::ng-deep .numInputWrapper {
+  width: auto !important;
+  display: inline-block !important;
+}
+
+:host ::ng-deep .numInputWrapper input,
+:host ::ng-deep .cur-year {
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  color: var(--text) !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 8px !important;
+  margin: 0 !important;
+  width: 70px !important;
+  text-align: left !important;
+}
+
+:host ::ng-deep .arrowUp,
+:host ::ng-deep .arrowDown {
+  display: none !important;
+}
+
+:host ::ng-deep .flatpickr-prev-month,
+:host ::ng-deep .flatpickr-next-month {
+  position: static !important;
+  fill: var(--accent) !important;
+  padding: 0 !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 8px !important;
+  flex-shrink: 0 !important;
+}
+
+:host ::ng-deep .flatpickr-prev-month svg,
+:host ::ng-deep .flatpickr-next-month svg {
+  width: 14px !important;
+  height: 14px !important;
+}
+
+:host ::ng-deep .flatpickr-prev-month:hover,
+:host ::ng-deep .flatpickr-next-month:hover {
+  background: rgba(216, 105, 61, 0.1) !important;
+}
+
+:host ::ng-deep .flatpickr-weekdays {
+  background: transparent !important;
+  padding: 8px 12px !important;
+  width: 100% !important;
+}
+
+:host ::ng-deep .flatpickr-weekdaycontainer {
+  display: flex !important;
+  width: 100% !important;
+}
+
+:host ::ng-deep .flatpickr-weekday {
+  color: var(--muted) !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  flex: 1 !important;
+  max-width: 40px !important;
+  text-align: center !important;
+}
+
+:host ::ng-deep .flatpickr-days {
+  padding: 0 12px 12px !important;
+  width: 100% !important;
+}
+
+:host ::ng-deep .dayContainer {
+  display: grid !important;
+  grid-template-columns: repeat(7, 40px) !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  gap: 0 !important;
+}
+
+:host ::ng-deep .flatpickr-day {
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  color: var(--text) !important;
+  border: 1px solid transparent !important;
+  max-width: 40px !important;
+  width: 40px !important;
+  height: 40px !important;
+  line-height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+:host ::ng-deep .flatpickr-day:hover:not(.flatpickr-disabled) {
+  background: rgba(216, 105, 61, 0.08) !important;
+  border-color: rgba(216, 105, 61, 0.3) !important;
+  color: var(--accent) !important;
+}
+
+:host ::ng-deep .flatpickr-day.today:not(.flatpickr-disabled) {
+  border-color: rgba(216, 105, 61, 0.5) !important;
+  color: var(--accent) !important;
+  background: transparent !important;
+}
+
+:host ::ng-deep .flatpickr-day.today:not(.flatpickr-disabled):hover {
+  background: rgba(216, 105, 61, 0.15) !important;
+}
+
+:host ::ng-deep .flatpickr-day.today.flatpickr-disabled {
+  border-color: transparent !important;
+}
+
+:host ::ng-deep .flatpickr-day.selected,
+:host ::ng-deep .flatpickr-day.selected.today {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: white !important;
+  font-weight: 700 !important;
+}
+
+:host ::ng-deep .flatpickr-day.selected:hover {
+  background: #c75e35 !important;
+  border-color: #c75e35 !important;
+}
+
+:host ::ng-deep .flatpickr-day.flatpickr-disabled {
+  color: var(--line) !important;
+  opacity: 0.4 !important;
+}
+
+:host ::ng-deep .flatpickr-day.prevMonthDay,
+:host ::ng-deep .flatpickr-day.nextMonthDay {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.custom-number-input {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: #ffffff;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.custom-number-input:hover {
+  border-color: rgba(216, 105, 61, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.custom-number-input input {
+  flex: 1;
+  border: none !important;
+  text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 14px 8px !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.custom-number-input input:focus {
+  transform: none !important;
+}
+
+.number-btn {
+  width: 44px;
+  height: 50px;
+  background: rgba(216, 105, 61, 0.08);
+  border: none;
+  color: var(--accent);
+  font-size: 24px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.number-btn:hover {
+  background: rgba(216, 105, 61, 0.15);
+}
+
+.number-btn:active {
+  transform: scale(0.95);
+  background: rgba(216, 105, 61, 0.2);
+}
+
+.custom-select {
+  position: relative;
+  user-select: none;
+}
+
+.custom-select__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.custom-select__trigger:hover {
+  border-color: rgba(216, 105, 61, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.custom-select.open .custom-select__trigger {
+  border-color: rgba(216, 105, 61, 0.6);
+  box-shadow: 0 0 0 4px rgba(216, 105, 61, 0.12);
+}
+
+.custom-select__value {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.custom-select__arrow {
+  color: var(--accent);
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.custom-select.open .custom-select__arrow {
+  transform: rotate(180deg);
+}
+
+.custom-select__options {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  max-height: 280px;
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s 0.2s;
+  z-index: 100;
+}
+
+.custom-select__options::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-select__options::-webkit-scrollbar-track {
+  background: rgba(216, 105, 61, 0.05);
+  border-radius: 10px;
+}
+
+.custom-select__options::-webkit-scrollbar-thumb {
+  background: rgba(216, 105, 61, 0.3);
+  border-radius: 10px;
+}
+
+.custom-select__options::-webkit-scrollbar-thumb:hover {
+  background: rgba(216, 105, 61, 0.5);
+}
+
+.custom-select.open .custom-select__options {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.time-section {
+  padding: 8px 0;
+}
+
+.time-section:not(:last-child) {
+  border-bottom: 1px solid var(--line);
+}
+
+.time-section__header {
+  padding: 12px 16px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.custom-select__option {
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.custom-select__option:hover {
+  background: rgba(216, 105, 61, 0.08);
+  color: var(--accent);
+}
+
+.custom-select__option.selected {
+  background: rgba(216, 105, 61, 0.15);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.custom-select__option.disabled {
+  color: var(--line);
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.custom-select__option.disabled:hover {
+  background: transparent;
+  color: var(--line);
+}

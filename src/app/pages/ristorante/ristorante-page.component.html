@@ -1,0 +1,76 @@
+<section class="hero">
+  <div class="container hero__layout">
+    <div class="hero__text">
+      <p class="eyebrow">Il Ristorante</p>
+      <h1>Allo Sbarco di Enea</h1>
+      <p class="lead">
+        Situato accanto agli scavi di Ostia Antica da circa 50 anni, propone cucina di pesce e
+        tradizione romana coordinata dalla famiglia Belfiore.
+      </p>
+      <div class="chips">
+        <span class="chip">Camino acceso</span>
+        <span class="chip">Musica dal vivo</span>
+        <span class="chip">Carta dei vini</span>
+      </div>
+      <div class="hero__actions">
+        <a class="btn primary" routerLink="/prenota">Prenota un tavolo</a>
+        <a class="btn ghost" routerLink="/menu">Vai al menù</a>
+      </div>
+    </div>
+
+    <div class="hero__media">
+      <div class="hero__badge">
+        <span>Cucina di pesce</span>
+        <span class="dot"></span>
+        <span>Ostia Antica</span>
+      </div>
+      <div class="hero__photo hero__photo--slider">
+        <div
+          class="hero__slide"
+          *ngFor="let img of galleryImages; let i = index"
+          [class.is-active]="i === currentSlide"
+          [style.backgroundImage]="'url(' + img + ')'"
+          aria-hidden="true"
+        ></div>
+      </div>
+      <div class="hero__card card">
+        <p class="value">Tradizione culinaria da oltre 50 anni</p>
+        <p class="muted">
+            piatti a base di pesce interpretati  con brio e vivacità
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <h2>Cucina storica e creatività stagionale</h2>
+    </div>
+    <div class="card-grid">
+      <article class="card">
+        <p class="label">Il Ristorante</p>
+        <p class="muted">
+          Allo Sbarco di Enea esiste da circa 50 anni e propone una tradizione culinaria storica e
+          consolidata. La famiglia Belfiore offre piatti di pesce interpretati con creatività a
+          seconda delle stagioni.
+        </p>
+      </article>
+      <article class="card">
+        <p class="label">Piatti distintivi</p>
+        <p class="muted">
+          Fettuccine con gamberi rossi e fiori di zucca · Rombo al forno con patate, olive, mandorle
+          e porcini · Scampi al sale · Carpaccio di pesce.
+        </p>
+      </article>
+      <article class="card">
+        <p class="label">Servizio</p>
+        <p class="muted">
+          Prenotazione consigliata per pranzo e cena, tavoli all'aperto, accoglienza familiare e sala
+          con camino.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
